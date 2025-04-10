@@ -1,0 +1,38 @@
+<h4>Корзина</h4>
+
+<ul class="collection" id="cartItems"></ul>
+
+<h5>Итого: <span id="totalPrice">0</span> ₽</h5>
+
+<h5>Оформление заказа</h5>
+<form method="POST" action="/order">
+  <input type="hidden" name="cart" id="cartData">
+  <div class="input-field">
+    <input type="text" name="full_name" required>
+    <label>ФИО</label>
+  </div>
+  <div class="input-field">
+    <input type="text" name="phone" required>
+    <label>Телефон</label>
+  </div>
+  <div class="input-field">
+    <input type="text" name="address" required>
+    <label>Адрес доставки / самовывоз</label>
+  </div>
+  <div class="input-field">
+    <textarea class="materialize-textarea" name="comment"></textarea>
+    <label>Комментарий к заказу</label>
+  </div>
+  <p>
+    <label>
+      <input name="delivery_method" type="radio" value="delivery" checked />
+      <span>Доставка</span>
+    </label>
+    <label style="margin-left: 20px;">
+      <input name="delivery_method" type="radio" value="pickup" />
+      <span>Самовывоз</span>
+    </label>
+  </p>
+  <br>
+  <button type="submit" class="btn">Оформить заказ</button>
+</form>

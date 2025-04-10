@@ -1,0 +1,21 @@
+/* Здесь можете переопределять стили Materialize или добавлять свои */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f9f9f9;
+}
+
+.category-chip {
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.category-chip:hover {
+  background-color: #e0f2f1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.category-chip.active {
+  background-color: #26a69a !important;
+  color: white;
+  font-weight: bold;
+}

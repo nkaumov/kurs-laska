@@ -1,0 +1,19 @@
+<div class="row" style="margin-top: 50px;">
+  <div class="col s12 m6 offset-m3">
+    <h4>Вход в админку</h4>
+    {{#if error}}
+      <div class="card-panel red white-text">{{error}}</div>
+    {{/if}}
+    <form method="POST" action="/admin/login">
+      <div class="input-field">
+        <input type="text" name="username" id="username" required>
+        <label for="username">Логин</label>
+      </div>
+      <div class="input-field">
+        <input type="password" name="password" id="password" required>
+        <label for="password">Пароль</label>
+      </div>
+      <button type="submit" class="btn waves-effect waves-light">Войти</button>
+    </form>
+  </div>
+</div>

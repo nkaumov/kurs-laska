@@ -1,0 +1,43 @@
+<h4>Спасибо за заказ!</h4>
+
+<p>Ваш номер заказа: <strong>{{order.order_number}}</strong></p>
+<p>Мы получили ваш заказ и уже начали его обработку.</p>
+
+<hr>
+
+<h5>Контакты ресторана</h5>
+<ul>
+  <li><strong>Телефон:</strong> +7 (999) 123-45-67</li>
+  <li><strong>Время работы:</strong> 10:00 — 22:00, ежедневно</li>
+</ul>
+
+<hr>
+
+<h5>Состав заказа:</h5>
+<ul class="collection">
+  {{#each items}}
+    <li class="collection-item">
+      {{name}} — {{quantity}} × {{price}} ₽ = <strong>{{total}} ₽</strong>
+    </li>
+  {{/each}}
+</ul>
+
+<p><strong>Комментарий:</strong> {{order.comment}}</p>
+<p><strong>Тип доставки:</strong> {{order.delivery_method}}</p>
+<p><strong>Адрес:</strong> {{order.address}}</p>
+
+<hr>
+
+<p><strong>Статус заказа:</strong>
+  {{#if (eq order.status "new")}}🟡 Создан{{/if}}
+  {{#if (eq order.status "processing")}}🟠 В обработке{{/if}}
+  {{#if (eq order.status "done")}}🟢 Выполнен{{/if}}
+  {{#if (eq order.status "canceled")}}🔴 Отменён{{/if}}
+  {{#if (eq order.status "in_kitchen")}}👨‍🍳 Готовится{{/if}}
+  {{#if (eq order.status "on_the_way")}}🚗 В пути{{/if}}
+</p>
+
+
+<script>
+  localStorage.removeItem('cart');
+</script>

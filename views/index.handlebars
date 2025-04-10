@@ -1,0 +1,68 @@
+<h4>Меню</h4>
+
+<div class="section" id="categoryFilter">
+  <div class="chip category-chip active" data-cat="all">Все</div>
+
+  {{#each categories}}
+    <div class="chip category-chip" data-cat="{{id}}">{{name}}</div>
+  {{/each}}
+
+  <div class="chip category-chip" data-cat="other">Прочее</div>
+</div>
+
+
+<!-- Сетка блюд -->
+<div class="row" id="menuItems">
+  {{#each menuItems}}
+    <div class="col s12 m6 l4 menu-item" data-category="{{category_id}}">
+      <div class="card">
+        <div class="card-image">
+          {{#if image_url}}
+            <img src="{{image_url}}" alt="{{name}}">
+          {{else}}
+            <img src="https://via.placeholder.com/300x200?text=No+Image">
+          {{/if}}
+        </div>
+        <div class="card-content">
+          <span class="card-title">{{name}}</span>
+          <p>Цена: {{price}} ₽</p>
+          {{#if weight}}<p>Вес: {{weight}} г</p>{{/if}}
+          {{#if composition}}<p>{{composition}}</p>{{/if}}
+        </div>
+        <div class="card-action">
+          <input type="number" class="item-qty" data-id="{{id}}" min="1" value="1" style="width: 60px;">
+          <button class="btn add-to-cart" data-id="{{id}}" data-name="{{name}}" data-price="{{price}}">В корзину</button>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const chips = document.querySelectorAll(".category-chip");
+
+    chips.forEach(chip => {
+      chip.addEventListener("click", () => {
+        const selectedCat = chip.dataset.cat;
+
+        // Активный класс
+        chips.forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+
+        // Фильтрация по категории
+        document.querySelectorAll(".menu-item").forEach(item => {
+          const itemCat = item.dataset.category;
+
+          const show =
+            selectedCat === "all" ||
+            (selectedCat === "other" && !itemCat) ||
+            itemCat === selectedCat;
+
+          item.style.display = show ? "block" : "none";
+        });
+      });
+    });
+  });
+</script>
+

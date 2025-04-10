@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col s12 m3">
+    {{> adminSidebar}}
+  </div>
+  <div class="col s12 m9">
+    <h5>Редактировать позицию</h5>
+
+    <form method="POST" action="/admin/menu/edit/{{item.id}}" enctype="multipart/form-data">
+      {{#if item.image_url}}
+        <p>Текущее изображение:</p>
+        <img src="{{item.image_url}}" alt="{{item.name}}" style="max-width: 200px;">
+      {{/if}}
+
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Новое изображение</span>
+          <input type="file" name="image">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Загрузите новое изображение (необязательно)">
+        </div>
+      </div>
+
+      <div class="input-field">
+        <input type="text" name="name" value="{{item.name}}" required>
+        <label class="active">Название</label>
+      </div>
+
+      <div class="input-field">
+        <input type="number" name="price" step="0.01" value="{{item.price}}" required>
+        <label class="active">Цена</label>
+      </div>
+
+      <div class="input-field">
+        <input type="number" name="weight" value="{{item.weight}}">
+        <label class="active">Граммовка</label>
+      </div>
+
+      <div class="input-field">
+        <textarea name="composition" class="materialize-textarea">{{item.composition}}</textarea>
+        <label class="active">Состав</label>
+      </div>
+
+      <p>
+        <label>
+          <input type="checkbox" name="is_active" {{#if item.is_active}}checked{{/if}} />
+          <span>Активно</span>
+        </label>
+      </p>
+
+      <div class="input-field">
+        <select name="category_id">
+          <option value="">Выберите категорию</option>
+          {{#each categories}}
+            <option value="{{id}}" {{#ifCond id ../item.category_id}}selected{{/ifCond}}>{{name}}</option>
+          {{/each}}
+        </select>
+        <label>Категория</label>
+      </div>
+
+      <button type="submit" class="btn green">Сохранить</button>
+      <a href="/admin/menu" class="btn grey">Отмена</a>
+    </form>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const elems = document.querySelectorAll("select");
+    M.FormSelect.init(elems);
+  });
+</script>
