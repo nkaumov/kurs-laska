@@ -19,3 +19,28 @@ body {
   color: white;
   font-weight: bold;
 }
+
+.btn,
+.btn-small {
+  background-color: #bf360c;
+  font-family: "Underdog", system-ui;
+}
+
+.user-page {
+  font-family: "Underdog", system-ui;
+}
+
+input:not([type]),
+input[type="number"]:not(.browser-default) {
+  border: 1px solid #bf360c;
+  border-radius: 50px;
+  height: 2.5rem;
+  justify-items: anchor-center;
+  top: 3px;
+  position: relative;
+}
+
+
+nav ul li {
+  border-left: 1px solid #ff8a65;
+}
